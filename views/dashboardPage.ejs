@@ -1,0 +1,49 @@
+<% srvData = JSON.parse(atob(dataEnc)) %> <% srvData.user.data =
+JSON.parse(srvData.user.data)%>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashbord</title>
+  </head>
+  <body>
+    <form
+      action="/login/<%= srvData.user.username %>"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <label for="image">image</label>
+      <input type="file" name="image" />
+      <label for="title">title</label>
+      <input type="text" name="title" />
+      <label for="ingredients">ingredients</label>
+      <input type="text" name="ingredients" />
+
+      <label for="price">price</label>
+      <input type="number" step="0.01" name="price" />
+
+      <label for="type">type</label>
+      <select id="select" name="type">
+        <option value="antipasti">Antipasti</option>
+        <option value="primi">Primi</option>
+        <option value="secondi">Secondi</option>
+        <option value="dolci">Dolci</option>
+        <option value="vini">Vini</option>
+        <option value="bevande">Bevande</option>
+        <option value="caffetteria">Caffetteria</option>
+        <option value="">Altro</option>
+        <input
+          type="text"
+          id="other"
+          name="other"
+          placeholder="Inserisci un altro valore"
+          style="display: none"
+        />
+      </select>
+
+      <button type="submit">OK</button>
+    </form>
+  </body>
+</html>

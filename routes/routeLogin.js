@@ -41,7 +41,7 @@ router.post('/', (req, res) => {
 
     checkUserPass(username, password).then((ris) => {
         if(ris == true){
-            const data = {}
+            
             req.session.user = username
             req.session.token = password
 

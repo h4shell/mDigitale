@@ -1,7 +1,5 @@
 const crypto = require('crypto');
 
-const test = "provadiunastringa."
-
 function hashGen(string){
     const hash = crypto.createHash('sha256').update(string).digest('hex')
     return hash

@@ -6,12 +6,6 @@ const routesRegister = require('./routes/routeRegister');
 const path = require('path')
 const bodyParser = require('body-parser');
 
-
-
-
-
-
-
 const app = express()
 
 

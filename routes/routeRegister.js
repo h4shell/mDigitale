@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 
 router.post('/', upload.single('image'), (req, res) => {
 
-    const campi = "name_restaurant, email, tel, addr, hours, open, phrase"
+    //const campi = "name_restaurant, email, tel, addr, hours, open, phrase"
 
     console.log(req.body)
     const data = {}

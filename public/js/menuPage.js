@@ -1,6 +1,11 @@
 const root = document.querySelector('.app')
 const category = []
 
+// clientData = Object
+let clientData = JSON.parse(atob("<%= encData %>"));
+clientData.user.data = JSON.parse(clientData.user.data);
+console.log(clientData);
+
 clientData.menus.map((menu) => {
     if(!category.includes(menu.type)){
         category.push(menu.type)
@@ -56,7 +61,7 @@ clientData.menus.map((menu) => {
     p.innerText = menu.ingredients
     const options = createDiv(detailBox, 'options')
     const h6 = createDiv(options, null, 'h6')
-    h5.innerText = menu.price
+    h6.innerText = menu.price
 })
 
 

@@ -9,6 +9,9 @@ JSON.parse(srvData.user.data)%>
     <title>Dashbord</title>
   </head>
   <body>
+    <form action="/logout" method="post">
+      <button type="submit">Logout</button>
+    </form>
     <form
       action="/login/<%= srvData.user.username %>"
       method="post"
@@ -45,5 +48,6 @@ JSON.parse(srvData.user.data)%>
 
       <button type="submit">OK</button>
     </form>
+    <script></script>
   </body>
 </html>

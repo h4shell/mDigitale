@@ -3,6 +3,7 @@ const session = require('express-session');
 const routesLogin = require('./routes/routeLogin');
 const routesMenu = require('./routes/routeMenu');
 const routesRegister = require('./routes/routeRegister');
+const routesLogout = require('./routes/routeLogout');
 const path = require('path')
 const bodyParser = require('body-parser');
 
@@ -41,6 +42,7 @@ app.use(session({
 app.use('/login', routesLogin)
 app.use('/menu', routesMenu)
 app.use('/register', routesRegister)
+app.use('/logout', routesLogout)
 
 app.listen(3000, () => {
     console.info("Server started..")

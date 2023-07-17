@@ -218,6 +218,11 @@ footer p{
     text-decoration: underline;
 }
 
+.app .card h6::before {
+    content: "€ ";
+
+}
+
 .card {
     opacity: 0;
     transform: scale(0.5);

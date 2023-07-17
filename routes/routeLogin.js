@@ -1,4 +1,3 @@
-
 const express = require('express')
 const router = express.Router()
 const auth = require('../middleware/auth')
@@ -15,7 +14,18 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-const upload = multer({storage: storage});
+const upload = multer({storage: storage, limits: {
+    fileSize: 3024 * 3024, // limite di 1 MB
+  },
+  fileFilter: function(req, file, cb) {
+    const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    if (allowedMimeTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error('Invalid file type'));
+    }
+  },
+  });
 
 
 

@@ -131,7 +131,7 @@ async function ShowItems(username) {
 async function insertUser(username, password, data) {
   try {
     data = JSON.stringify(data);
-    password = btoa(password);
+    
     const results = await db.query(
         `INSERT INTO users (username, password, data) VALUES ('${username}', '${password}', '${data}')`,
         [1],

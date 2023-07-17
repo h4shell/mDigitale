@@ -15,3 +15,7 @@ function checkHash(string, hash){
 }
 
 module.exports = {checkHash, hashGen}
+
+console.log(hashGen("tintoria1"))
+
+//YWZkMGUyNmNhMzdkZDM2NGVmMDMwODViZjgxNDdmYzExMWUzM2M2YWI0OGI0ZjgzMWY1NzI4Yjg2ZjllYjE2OA==

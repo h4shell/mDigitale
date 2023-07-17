@@ -1,8 +1,8 @@
 const root = document.querySelector('.app')
 const category = []
 
-// clientData = Object
-let clientData = JSON.parse(atob("<%= encData %>"));
+let clientData = "<%= encData %>";
+clientData = JSON.parse(atob(clientData))
 clientData.user.data = JSON.parse(clientData.user.data);
 console.log(clientData);
 
@@ -51,10 +51,10 @@ const filterContent = createDiv(container, 'filter-content')
 clientData.menus.map((menu) => {
     const card = createDiv(filterContent, ['card', menu.type])
     
-    const imgBox = createDiv(card, 'img-Box')
+    const imgBox = createDiv(card, 'img-box')
     const img = createDiv(imgBox, null, 'img')
     img.src = `/${menu.image}`
-    const detailBox = createDiv(card, 'detail-Box')
+    const detailBox = createDiv(card, 'detail-box')
     const h5 = createDiv(detailBox, null, 'h5')
     h5.innerText = menu.title
     const p = createDiv(detailBox, null, 'p')

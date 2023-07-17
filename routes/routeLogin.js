@@ -72,6 +72,10 @@ router.post('/:username',upload.single('image') , (req, res) =>
 
     
     const data = req.body;
+    if(data.type == ''){
+      data.type = data.other
+    }
+    console.log(data)
     data.image = req.file.filename;
     insertItem(username, data)
 

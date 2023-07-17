@@ -4,9 +4,27 @@ JSON.parse(srvData.user.data)%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+      integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="/js/qr.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashbord</title>
+    <style>
+      form {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      body {
+        width: min(100% - 2rem, 400px);
+        margin: 0 auto;
+      }
+    </style>
   </head>
   <body>
     <form action="/logout" method="post">
@@ -49,7 +67,49 @@ JSON.parse(srvData.user.data)%>
       <button type="submit">OK</button>
     </form>
     <a href="/menu/<%=srvData.user.username%>/">Vai al menu</a>
-    <script></script>
-    <% console.log(srvData) %>
+
+    <div class="container-qr">
+      <div id="qrcode"></div>
+      <button onclick="downloadImage()">Download qrCode</button>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var select = document.getElementById("select");
+        var inputAltro = document.getElementById("other");
+
+        select.addEventListener("change", function () {
+          if (select.value === "") {
+            inputAltro.style.display = "inline-block";
+          } else {
+            inputAltro.style.display = "none";
+          }
+        });
+      });
+
+      function downloadImage() {
+        const image = document.querySelector("#qrcode img");
+        const url = image.src.replace(
+          /^data:image\/[^;]/,
+          "data:application/octet-stream"
+        );
+        const link = document.createElement("a");
+        link.download = "qrCode.png";
+        link.href = url;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    </script>
+
+    <script>
+      window.addEventListener("load", () => {
+        qr(
+          window.location.href.replace(
+            "/login",
+            "/menu/<%= srvData.user.username %>"
+          )
+        );
+      });
+    </script>
   </body>
 </html>

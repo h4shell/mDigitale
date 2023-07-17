@@ -13,6 +13,7 @@ router.get('/:user', (req, res) => {
         if(ris != false){
             const data = {}
             data.encData = btoa(JSON.stringify(ris))
+            data.hostname = req.hostname
             res.status(200).render('menuPage', data)
         } else {
             res.status(400).json({user: 'not found'})

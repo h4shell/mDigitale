@@ -9,9 +9,10 @@ const bodyParser = require('body-parser');
 
 const app = express()
 
+// Dichiarazione del motore di template EJS
+app.set('view engine', 'ejs');
 
 app.use(express.static('uploads'));
-
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,10 +28,7 @@ app.use(session({
     saveUninitialized: true
   }));
 
-// Dichiarazione del motore di template EJS
-app.set('view engine', 'ejs');
-
-// Servire i file statici dalla cartella public
+// Servo i file statici che si trovano su public
 app.use(express.static(path.join(path.resolve(), 'public')));
 
 app.use(session({
@@ -38,6 +36,8 @@ app.use(session({
     resave: false,
     saveUninitialized: true
   }));
+
+// Carico le root su express
 
 app.use('/login', routesLogin)
 app.use('/menu', routesMenu)

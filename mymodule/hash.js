@@ -6,7 +6,7 @@ function hashGen(string){
 }
 
 function checkHash(string, hash){
-    const hash1 = crypto.createHash('sha256').update(string).digest('hex')
+    const hash1 = hashGen(string)
     if(hash == hash1){
         return true
     } else {

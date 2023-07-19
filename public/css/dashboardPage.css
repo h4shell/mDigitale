@@ -1,0 +1,9 @@
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  body {
+    width: min(100% - 2rem, 400px);
+    margin: 0 auto;
+  }

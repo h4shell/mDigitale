@@ -59,7 +59,6 @@ router.post('/', upload.single('logo'), (req, res) => {
 
     insertUser(username, password, data).then(
         res.status(200).redirect('/login'))
-
 })
 
 module.exports = router

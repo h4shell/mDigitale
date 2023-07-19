@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const { insertUser } = require('../mymodule/sql')
 const { hashGen } = require('../mymodule/hash');
+const auth = require('../middleware/auth')
+
 
 const multer = require('multer');
 
@@ -29,8 +31,12 @@ fileFilter: function(req, file, cb) {
 },
 });
 
-router.get('/', (req, res) => {
-    res.status(200).render('registerPage')
+router.get('/', auth, (req, res) => {
+    if(req.session.auth == true){
+      res.redirect('/login')
+    } else {
+      res.status(200).render('registerPage')
+    }
 })
 
 router.post('/', upload.single('logo'), (req, res) => {
@@ -53,9 +59,6 @@ router.post('/', upload.single('logo'), (req, res) => {
 
     insertUser(username, password, data).then(
         res.status(200).redirect('/login'))
-    
-
-    
 
 })
 

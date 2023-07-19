@@ -31,15 +31,22 @@ const upload = multer({storage: storage, limits: {
 
 
 router.get('/', auth, (req, res) => {
-    
-    const username = req.session.user
 
-    getUserByUsername(username).then((user) => {
+
+    console.log(req.session.auth)
+    if(req.session.auth == false){
+      res.status(200).render('loginPage')
+    } else {
+      getUserByUsername(req.session.user).then((user) => {
         const data = {}
         data.dataEnc = btoa(JSON.stringify(user))
         res.status(200).render("dashboardPage", data)
-    })
+      })
 
+
+    }
+
+    
 
     
 })

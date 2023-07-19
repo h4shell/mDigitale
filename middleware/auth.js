@@ -7,13 +7,29 @@ function auth(req, res, next) {
         const password = req.session.token
         checkUserPass(username, password).then((ris) => {
             if(ris == true){
+                req.session.auth = true
                 next()
             } else {
-                res.redirect('/login')
+                req.session.auth = false
+                next()
             }
         })
     } else {
-        res.render('loginPage')
+        const username = req.body.username
+        const password = req.body.password
+        checkUserPass(username, password).then((ris) => {
+            if(ris == true){
+                req.session.auth = true
+                req.session.username = username
+                req.session.password = password
+                next()
+            } else {
+                req.session.auth = false
+                next()
+            }
+        })
+        req.session.auth = false
+        next()
     }
 
 }

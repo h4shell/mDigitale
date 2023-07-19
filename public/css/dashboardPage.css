@@ -1,9 +1,105 @@
-form {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Freehand&display=swap");
 
-  body {
-    width: min(100% - 2rem, 400px);
-    margin: 0 auto;
-  }
+:root {
+  --bg: #222831;
+  --primary-color: black;
+  --text: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: min(100% - 1rem, 33pc);
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  height: 100svh;
+  align-items: center;
+  margin: 0 auto;
+  background: var(--bg);
+  font-family: "Inter", sans-serif;
+}
+
+form {
+  display: grid;
+  gap: 18px;
+}
+
+form .container-button {
+  display: flex;
+  justify-content: center;
+}
+
+form button {
+  width: min-content;
+  border-radius: 25px;
+  border: none;
+  padding: 0.6rem 1.8rem;
+  background: var(--primary-color);
+  color: var(--text);
+  font-size: 1.1rem;
+}
+
+form input {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  border: none;
+  justify-content: center;
+  align-items: center;
+}
+
+form input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  margin: auto 0;
+  outline: none;
+  transform: translateY(-1.5px);
+}
+
+form input:focus {
+  outline: none;
+  color: var(--text);
+}
+
+form a {
+  color: var(--text);
+  text-align: center;
+  text-decoration: none;
+  margin-top: 6px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+form .container-link {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.3rem;
+  align-content: center;
+}
+
+form svg {
+  color: var(--text);
+  height: 30px;
+  width: 30px;
+}
+
+form .container-username,
+form .container-password {
+  display: flex;
+  align-items: center;
+  border: 2px solid grey;
+  border-radius: 20px;
+  padding: 0 0.5rem;
+}
+
+form .container-input {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 1rem;
+}

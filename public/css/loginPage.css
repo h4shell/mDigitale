@@ -7,6 +7,12 @@
   --text: white;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   width: min(100% - 1rem, 33pc);
   display: flex;
@@ -21,36 +27,39 @@ body {
 
 form {
   display: grid;
-  gap: 6px;
+  gap: 18px;
 }
 
 form .container-button {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
 }
 
 form button {
   width: min-content;
   border-radius: 25px;
   border: none;
-  padding: 0.2rem 1rem;
+  padding: 0.6rem 1.8rem;
   background: var(--primary-color);
   color: var(--text);
   font-size: 1.1rem;
 }
 
 form input {
-  padding: 8px;
-  border-radius: 20px;
   background: transparent;
   color: rgba(255, 255, 255, 0.8);
   font-size: 1.1rem;
   border: none;
+  justify-content: center;
+  align-items: center;
 }
 
 form input::placeholder {
   color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  margin: auto 0;
+  outline: none;
+  transform: translateY(-1.5px);
 }
 
 form input:focus {
@@ -69,7 +78,7 @@ form a {
 
 form .container-link {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 0.3rem;
   align-content: center;
 }
@@ -87,4 +96,18 @@ form .container-password {
   border: 2px solid grey;
   border-radius: 20px;
   padding: 0 0.5rem;
+}
+
+form .container-input {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 1rem;
+}
+
+h1{
+  font-family: 'Freehand', cursive;
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 30px;
+  color: white;
 }

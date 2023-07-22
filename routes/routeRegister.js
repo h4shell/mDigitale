@@ -45,7 +45,7 @@ router.post('/', upload.single('logo'), (req, res) => {
 
     console.log(req.body)
     const data = {}
-    const { username} = req.body
+    const username = req.body.username.toLowerCase();
     const password = hashGen(req.body.password)
 
     data.name_restaurant = name_restaurant

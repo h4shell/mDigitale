@@ -10,34 +10,73 @@ JSON.parse(srvData.user.data)%>
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="/js/qr.js"></script>
+    <script src="/js/dashboardPage/qr.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashbord</title>
     <link rel="stylesheet" href="/css/dashboardPage.css" />
+    <script src="/js/dashboardPage/inputFile.js" defer></script>
+    <script src="/js/dashboardPage/showqr.js" defer></script>
   </head>
   <body>
-    <form action="/logout" method="post" id="logout">
-      <button type="submit">Logout</button>
-    </form>
+    <nav>
+      <div class="qr">
+        <button class="show-qr"><img src="/images/qr.svg" alt="" /></button>
+        <div class="container-qr dnone">
+          <div id="qrcode"></div>
+          <button onclick="downloadImage()">
+            <img src="/images/download.svg" alt="" />
+          </button>
+        </div>
+      </div>
+      <button class="goto">
+        <img src="/images/display.svg" alt="" />
+      </button>
+      <form action="/logout" method="post" id="logout">
+        <button type="submit" class="logout">
+          <img src="/images/logout.svg" alt="" />
+        </button>
+      </form>
+    </nav>
     <form
       action="/login/<%= srvData.user.username %>"
       method="post"
       enctype="multipart/form-data"
       id="newItem"
     >
-      <!---------------------------------------------------------->
+      <!-- ------------------------------------------------------ -->
 
-      <div class="card batteria">
-        <div class="img-box"><input type="file" name="image" required /></div>
+      <div class="card-new">
+        <div class="img-box">
+          <input type="file" name="image" required accept="image/*" />
+          <img src="" id="preview" alt="" class="dnone" />
+        </div>
         <div class="detail-box">
- 
-            <input
-              type="text"
-              name="title"
-              placeholder="Es. Hamburger"
-              required
-            />
+          <div class="container-select">
+            <select id="select" name="type">
+              <option value="antipasti">Antipasti</option>
+              <option value="primi">Primi</option>
+              <option value="secondi">Secondi</option>
+              <option value="dolci">Dolci</option>
+              <option value="vini">Vini</option>
+              <option value="bevande">Bevande</option>
+              <option value="caffetteria">Caffetteria</option>
+              <option value="">Altro</option>
+              <input
+                type="text"
+                id="other"
+                name="other"
+                placeholder="Inserisci una nuova categoria"
+                style="display: none"
+              />
+            </select>
+          </div>
+          <input
+            type="text"
+            name="title"
+            placeholder="Es. Hamburger"
+            required
+          />
 
           <p>
             <input
@@ -58,48 +97,29 @@ JSON.parse(srvData.user.data)%>
               />
             </h6>
           </div>
+          <button type="submit"><img src="/images/send.svg" alt="" /></button>
         </div>
       </div>
 
-      <!--------------------------------------------------------->
-
-      <select id="select" name="type">
-        <option value="antipasti">Antipasti</option>
-        <option value="primi">Primi</option>
-        <option value="secondi">Secondi</option>
-        <option value="dolci">Dolci</option>
-        <option value="vini">Vini</option>
-        <option value="bevande">Bevande</option>
-        <option value="caffetteria">Caffetteria</option>
-        <option value="">Altro</option>
-        <input
-          type="text"
-          id="other"
-          name="other"
-          placeholder="Inserisci una nuova categoria"
-          style="display: none"
-        />
-      </select>
-
-      <button type="submit">OK</button>
+      <!-- ----------------------------------------------------- -->
     </form>
-    <a href="/menu/<%=srvData.user.username%>/">Vai al menu</a>
-
-    <div class="container-qr">
-      <div id="qrcode"></div>
-      <button onclick="downloadImage()">Download qrCode</button>
-    </div>
+    <% console.log(srvData) %>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         var select = document.getElementById("select");
         var inputAltro = document.getElementById("other");
-
         select.addEventListener("change", function () {
           if (select.value === "") {
             inputAltro.style.display = "inline-block";
           } else {
             inputAltro.style.display = "none";
           }
+        });
+
+        const goto = document.querySelector(".goto");
+
+        goto.addEventListener("click", () => {
+          window.location.href = "/menu/<%= srvData.user.username %>";
         });
       });
 
@@ -123,7 +143,7 @@ JSON.parse(srvData.user.data)%>
         qr(
           window.location.href.replace(
             "/login",
-            "/menu/<%= srvData.user.username %>"
+            "/menu/<%= srvData.user.sername %>"
           )
         );
       });

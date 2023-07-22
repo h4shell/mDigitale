@@ -1,105 +1,129 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Freehand&display=swap");
-
 :root {
-  --bg: #222831;
-  --primary-color: black;
-  --text: white;
-}
+    --primary-color: #222831;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    width: min(100% - 1rem, 66pc);
+    margin: 0 auto;
+  }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  nav{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    background-color: #222831;
+    border-radius: 50px;
+    margin-bottom: 18px;
+  }
+  
+  .card-new {
+    width: 320px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-new .img-box {
+    height: 150px;
+    background: var(--primary-color);
+    border-radius: 0 0 0 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .detail-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  .container-select {
+    width: 200px;
+    border-radius: 35px;
+    padding: 5px 12px;
+    outline: none;
+    border: none;
+    box-shadow: 0 0 3px 0 black;
+  }
+  
+  select {
+    text-align: center;
+    border: none;
+    background: transparent;
+    width: 100%;
+    outline: none;
+  }
+  
+  input[type="file"] {
+    color: white;
+  }
+  
+  button, .goto {
+    display: block;
+    aspect-ratio: 1;
+    width: min-content;
+    border-radius: 50%;
+    border: none;
+    padding: 0.6rem 1.8rem;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1.1rem;
+    width: min-content;
+    aspect-ratio: 1;
+    cursor: pointer;
+  }
 
-body {
-  width: min(100% - 1rem, 33pc);
-  display: flex;
-  justify-content: center;
-  height: 100vh;
-  height: 100svh;
-  align-items: center;
-  margin: 0 auto;
-  background: var(--bg);
-  font-family: "Inter", sans-serif;
-}
 
-form {
-  display: grid;
-  gap: 18px;
-}
 
-form .container-button {
-  display: flex;
-  justify-content: center;
-}
+  
+  #preview {
+    padding: 20px;
+    height: 100%;
+  }
+  
+  .removeImg {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    border-radius: 50%;
+    right: 10px;
+    top: 10px;
+    position: absolute;
+  }
 
-form button {
-  width: min-content;
-  border-radius: 25px;
-  border: none;
-  padding: 0.6rem 1.8rem;
-  background: var(--primary-color);
-  color: var(--text);
-  font-size: 1.1rem;
-}
+  
+  
 
-form input {
-  background: transparent;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.1rem;
-  border: none;
-  justify-content: center;
-  align-items: center;
-}
+  .dnone {
+    display: none!important;
+  }
 
-form input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.8rem;
-  margin: auto 0;
-  outline: none;
-  transform: translateY(-1.5px);
-}
+  .container-qr{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 5px;
+    z-index: 10;
+    background: white;
+    padding: 40px;
+    box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.3);
 
-form input:focus {
-  outline: none;
-  color: var(--text);
-}
+  }
 
-form a {
-  color: var(--text);
-  text-align: center;
-  text-decoration: none;
-  margin-top: 6px;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-form .container-link {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.3rem;
-  align-content: center;
-}
-
-form svg {
-  color: var(--text);
-  height: 30px;
-  width: 30px;
-}
-
-form .container-username,
-form .container-password {
-  display: flex;
-  align-items: center;
-  border: 2px solid grey;
-  border-radius: 20px;
-  padding: 0 0.5rem;
-}
-
-form .container-input {
-  display: flex;
-  align-items: center;
-  padding: 0.3rem 1rem;
-}

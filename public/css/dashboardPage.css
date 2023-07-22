@@ -122,8 +122,9 @@
     margin-top: 5px;
     z-index: 10;
     background: white;
-    padding: 40px;
+    padding: 10px;
     box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.3);
+    transform: scale(0.95);
 
   }
 

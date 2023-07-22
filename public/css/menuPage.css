@@ -13,6 +13,24 @@
     user-select: none;
 }
 
+
+
+
+  nav button, .goto {
+    display: block !important;
+    aspect-ratio: 1!important;
+    width: min-content!important;
+    border-radius: 50%!important;
+    border: none!important;
+    padding: 0.6rem 1.8rem!important;
+    background: var(--primary-color)!important;
+    color: white!important;
+    font-size: 1.1rem!important;
+    width: min-content!important;
+    aspect-ratio: 1!important;
+    cursor: pointer!important;
+  }
+
 .container-form{
    width: 400px;
    margin: 0 auto;
@@ -232,6 +250,32 @@ footer p{
 .app .card .img-box img {
     mix-blend-mode: multiply;
 }
+
+.remove-card{
+    position: absolute;
+    height: fit-content;
+    width: fit-content;
+    top: 30px;
+    right: 30px;
+    border-radius: 50%;
+    border: none;
+    transform: scale(2.5);
+}
+
+
+.card form button{
+    background: transparent;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    background-color: #222831;
+    border-radius: 50px;
+    width: min(100% - 1rem, 66pc);
+    margin: 10px auto !important;
+
+  }
   
   @keyframes zoomIn {
     from {

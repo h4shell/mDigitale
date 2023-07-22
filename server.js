@@ -4,6 +4,7 @@ const routesLogin = require('./routes/routeLogin');
 const routesMenu = require('./routes/routeMenu');
 const routesRegister = require('./routes/routeRegister');
 const routesLogout = require('./routes/routeLogout');
+const routesRemove = require('./routes/routeRemove');
 const path = require('path')
 const bodyParser = require('body-parser');
 
@@ -43,6 +44,7 @@ app.use('/login', routesLogin)
 app.use('/menu', routesMenu)
 app.use('/register', routesRegister)
 app.use('/logout', routesLogout)
+app.use('/remove', routesRemove)
 
 app.listen(3000, () => {
     console.info("Server started..")

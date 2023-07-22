@@ -59,6 +59,16 @@ console.log(srvData) %>
     <title>Menu - <%= srvData.user.data.name_restaurant %></title>
   </head>
   <body>
+    <nav>
+      <button class="goto">
+        <img src="/images/add.svg" alt="" />
+      </button>
+      <form action="/logout" method="post" id="logout">
+        <button type="submit" class="logout">
+          <img src="/images/logout.svg" alt="" />
+        </button>
+      </form>
+    </nav>
     <div class="app"></div>
 
     <footer>
@@ -130,6 +140,14 @@ console.log(srvData) %>
         >
       </p>
     </div>
+
+    <script>
+      const goto = document.querySelector(".goto");
+
+      goto.addEventListener("click", () => {
+        window.location.href = "/login";
+      });
+    </script>
     <script>
       const root = document.querySelector(".app");
       const category = [];
@@ -179,7 +197,7 @@ console.log(srvData) %>
       clientData.menus.map((menu) => {
         const card = createDiv(filterContent, ["card", menu.type]);
         card.item = menu.id;
-
+        console.log(card.item);
         const imgBox = createDiv(card, "img-box");
         const img = createDiv(imgBox, null, "img");
         img.src = `/${menu.image}`;
@@ -223,6 +241,33 @@ console.log(srvData) %>
             //console.log(li.innerText);
           }
         });
+      });
+    </script>
+
+    <script>
+      const cards = document.querySelectorAll(".card");
+
+      cards.forEach((card) => {
+        const formRem = document.createElement('form')
+        formRem.method = 'POST'
+        formRem.action = '/remove/' + clientData.user.username
+        let formInput = document.createElement('input')
+        formInput.type = 'text'
+        formInput.defaultValue = card.item
+        formRem.appendChild(formInput)
+        formInput.name = 'rem'
+
+
+        const btnRem = document.createElement("button");
+        btnRem.type = 'Submit'
+        btnRem.classList.add("remove-card");
+        const imgBtn = document.createElement("img");
+        imgBtn.src = "/images/x-square-fill.svg";
+        card.appendChild(formRem);
+        formRem.appendChild(btnRem)
+        <!-- card.item = id -->
+        btnRem.appendChild(imgBtn);
+        console.log(card);
       });
     </script>
   </body>

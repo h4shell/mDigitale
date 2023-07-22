@@ -58,9 +58,12 @@ async function getUserByUsername(username){
       const data = {}
       data.user = result[0]
       data.menus = menus
+      
       menus.map((el, cont = 0) => {
         
+        const id = el.id
         data.menus[cont] = JSON.parse(el.data)
+        data.menus[cont].id = id
         cont += 1
       })
       
@@ -114,6 +117,24 @@ async function insertItem(username, data) {
   }
 }
 
+
+async function deleteById(id) {
+  try {
+    
+    
+
+    const results = await db.query(
+        `DELETE FROM menu WHERE id = ${id};`,
+        [1],
+    );
+    return results;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    console.log('insertItem - Done..');
+  }
+}
+
 async function ShowItems(username) {
   try {
     const results = await db.query(
@@ -144,5 +165,6 @@ async function insertUser(username, password, data) {
   }
 }
 
+deleteById(68)
 
-module.exports = {showUsers, getUserByUsername, checkUserPass, insertItem, ShowItems, insertUser}
+module.exports = {showUsers, getUserByUsername, checkUserPass, insertItem, ShowItems, insertUser, deleteById}

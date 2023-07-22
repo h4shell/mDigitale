@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Freehand&display=swap");
+:root{
+    --bg: #222831;
+    --text: white;
+    --primary-color: black 
+}
+
+*{
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+    border: none;
+    outline: none;
+    text-decoration: none;
+}
+
+body{
+    
+    background: var(--bg);
+}
+
+h2{
+    margin-top: 18px ;
+    font-family: 'Freehand', cursive;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.input-wrapper{
+    display: grid;
+}
+
+.app{
+    width: min(100% - 1rem, 46pc);
+    margin: 0 auto;
+}
+
+.app > *{
+    display: block;
+    
+}
+
+.container-input{
+    display: flex;    
+}
+
+.input-wrapper-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 8px
+
+}
+
+input[type=text], input[type=email], input[type=password], input[type=number]{
+    padding: 0.8rem 1rem;
+    border-radius: 25px;
+    box-shadow: 0 0 0 1px white;
+}
+
+textarea{
+    box-shadow: 0 0 0 1px white;
+    border-radius: 25px;
+    padding: 15px;
+}
+
+input::placeholder{
+    color: rgba(255,255,255,0.8);
+}
+
+form{
+    display: grid;
+    grid-gap:18px;
+}
+
+form button{
+    width: min-content;
+    border-radius: 25px;
+    border: none;
+    padding: 0.6rem 1.8rem;
+    background: var(--primary-color);
+    color: var(--text);
+    font-size: 1.1rem;
+    margin: 0 auto;
+}
+
+.input-wrapper-logo{
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: dotted var(--text) 4px
+}
+
+.input-wrapper-logo:{
+    background: red;
+}
+
+input[disabled=true]{
+    background: rgba(255,255,255,0.2);
+    opacity: 0.4;
+}
+
+@media (max-width: 46pc) {
+    .input-wrapper-2 {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 18px;
+    
+    }
+}

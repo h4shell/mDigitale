@@ -5,97 +5,195 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register Page</title>
     <script src="/js/registerPage/registerPage.js"></script>
+    <link rel="stylesheet" href="/css/registerPage.css" />
   </head>
   <body>
-    <div class="container-form">
-      <form action="/register" method="post" enctype="multipart/form-data">
-        <script>
-          const form = document.querySelector("form");
+    <h2>Register Menu Digitale</h2>
+    <div class="app">
+      <div class="container-form">
+        <form action="/register" method="post" enctype="multipart/form-data">
+          <div class="container-input">
+            <!-- <script>
+              const form = document.querySelector("form");
+  
+              const inputsArray = [
+                {
+                  name: "logo",
+                  type: "file",
+                  status: "required",
+                  parent: form,
+                },
+  
+                {
+                  name: "username",
+                  type: "text",
+                  status: "required",
+                  parent: form,
+                },
+                {
+                  name: "password",
+                  type: "password",
+                  status: "required",
+                  parent: form,
+                },
+                {
+                  name: "name_restaurant",
+                  type: "text",
+                  status: "required",
+                  parent: form,
+                },
+                {
+                  name: "email",
+                  type: "email",
+                  status: "required",
+                  parent: form,
+                },
+                {
+                  name: "tel",
+                  type: "text",
+                  status: "required",
+                  parent: form,
+                },
+                {
+                  name: "addr",
+                  type: "text",
+                  status: "required",
+                  parent: form,
+                },
+                {
+                  name: "hours",
+                  type: "text",
+                  status: "required",
+                  parent: form,
+                },
+                {
+                  name: "open",
+                  type: "text",
+                  status: "required",
+                  parent: form,
+                },
+                {
+                  name: "theme",
+                  type: "text",
+                  status: "required",
+                  parent: form,
+                  value: "default",
+                  disabled: true,
+                },
+                {
+                  name: "color",
+                  type: "text",
+                  status: "required",
+                  parent: form,
+                  value: "default",
+                  disabled: true,
+                },
+              ];
+  
+              inputsArray.forEach((el) => {
+                createInput(el);
+              });
+            </script> -->
+          </div>
+          <div class="input-wrapper input-wrapper-logo">
+            <input
+              placeholder="logo"
+              type="file"
+              name="logo"
+              required="true"
+              accept="image/*"
+            />
+          </div>
+          <div class="input-wrapper-2">
+            <input
+              placeholder="username"
+              type="text"
+              name="username"
+              required="true"
+            />
 
-          const inputsArray = [
-            {
-              name: "logo",
-              type: "file",
-              status: "required",
-              parent: form,
-            },
+            <input
+              placeholder="password"
+              type="password"
+              name="password"
+              required="true"
+            />
+          </div>
 
-            {
-              name: "username",
-              type: "text",
-              status: "required",
-              parent: form,
-            },
-            {
-              name: "password",
-              type: "password",
-              status: "required",
-              parent: form,
-            },
-            {
-              name: "name_restaurant",
-              type: "text",
-              status: "required",
-              parent: form,
-            },
-            {
-              name: "email",
-              type: "email",
-              status: "required",
-              parent: form,
-            },
-            {
-              name: "tel",
-              type: "text",
-              status: "required",
-              parent: form,
-            },
-            {
-              name: "addr",
-              type: "text",
-              status: "required",
-              parent: form,
-            },
-            {
-              name: "hours",
-              type: "text",
-              status: "required",
-              parent: form,
-            },
-            {
-              name: "open",
-              type: "text",
-              status: "required",
-              parent: form,
-            },
-            {
-              name: "theme",
-              type: "text",
-              status: "required",
-              parent: form,
-              value: "default",
-              disabled: true
+          <div class="input-wrapper">
+            <input
+              placeholder="Nome ristorante / bar"
+              type="text"
+              name="name_restaurant"
+              required="true"
+            />
+          </div>
+          <div class="input-wrapper">
+            <input
+              placeholder="email"
+              type="email"
+              name="email"
+              required="true"
+            />
+          </div>
+          <div class="input-wrapper">
+            <input
+              placeholder="telefono"
+              type="text"
+              name="tel"
+              required="true"
+            />
+          </div>
+          <div class="input-wrapper">
+            <input
+              placeholder="Indirizzo"
+              type="text"
+              name="addr"
+              required="true"
+            />
+          </div>
+          <div class="input-wrapper-2">
+            <input
+              placeholder="Orario (es. 10:00 - 1.00)"
+              type="text"
+              name="hours"
+              required="true"
+            />
+            <input
+              placeholder="giorni (es. LUN - VEN)"
+              type="text"
+              name="open"
+              required="true"
+            />
+          </div>
+          <div class="input-wrapper-2">
+            <input
+              disabled="true"
+              placeholder="Tema Default"
+              type="text"
+              name="theme"
+              required="true"
+              value="default"
+            />
+            <input
+              disabled="true"
+              placeholder="Colore"
+              type="text"
+              name="color"
+              required="true"
+              value="default"
+            />
+          </div>
 
-            },
-            {
-              name: "color",
-              type: "text",
-              status: "required",
-              parent: form,
-              value: "default",
-              disabled: true
-            },
-          ];
+          <label
+            for="Frase di presentazione (Es. benvenuti nel mio ristorante.)"
+            >phrase</label
+          >
+          <textarea name="phrase" rows="5" cols="50"></textarea>
 
-          inputsArray.forEach((el) => {
-            createInput(el);
-          });
-        </script>
-        <label for="phrase">phrase</label>
-        <textarea name="phrase" rows="5" cols="50"></textarea>
-
-        <button type="submit">OK</button>
-      </form>
+          <button type="submit">Register</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>

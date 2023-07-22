@@ -1,3 +1,4 @@
+const port = 30001
 const express = require('express')
 const session = require('express-session');
 const routesLogin = require('./routes/routeLogin');
@@ -46,6 +47,7 @@ app.use('/register', routesRegister)
 app.use('/logout', routesLogout)
 app.use('/remove', routesRemove)
 
-app.listen(3000, () => {
+
+app.listen(port, () => {
     console.info("Server started..")
 })

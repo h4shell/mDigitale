@@ -94,9 +94,7 @@ form button{
     border: dotted var(--text) 4px
 }
 
-.input-wrapper-logo:{
-    background: red;
-}
+
 
 input[disabled=true]{
     background: rgba(255,255,255,0.2);

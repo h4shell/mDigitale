@@ -54,7 +54,11 @@ console.log(srvData) %>
       content="http://<%= hostname %>/<%= srvData.user.data.logo %>"
     />
     <!-- METADATI-->
-
+    <style>
+      .id-item {
+        display: none;
+      }
+    </style>
     <link rel="stylesheet" href="/css/menuPage.css" />
     <title>Menu - <%= srvData.user.data.name_restaurant %></title>
   </head>
@@ -256,6 +260,7 @@ console.log(srvData) %>
         formInput.defaultValue = card.item
         formRem.appendChild(formInput)
         formInput.name = 'rem'
+        formInput.classList.add('id-item')
 
 
         const btnRem = document.createElement("button");

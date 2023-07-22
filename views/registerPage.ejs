@@ -4,45 +4,96 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register Page</title>
-    <style>
-      form {
-        display: grid;
-        grid-template-columns: 1fr;
-      }
-
-      body {
-        width: min(100% - 2rem, 400px);
-        margin: 0 auto;
-      }
-    </style>
+    <script src="/js/registerPage/registerPage.js"></script>
   </head>
   <body>
     <div class="container-form">
       <form action="/register" method="post" enctype="multipart/form-data">
-        <label for="logo">logo</label>
-        <input type="file" name="logo" required />
-        <label for="username">username</label>
-        <input type="text" name="username" required />
-        <label for="password">password</label>
-        <input type="password" name="password" required />
-        <label for="name_restaurant">name_restaurant</label>
-        <input type="text" name="name_restaurant" required />
-        <label for="email">email</label>
-        <input type="email" name="email" required />
-        <label for="tel">tel</label>
-        <input type="text" name="tel" required />
-        <label for="addr">addr</label>
-        <input type="text" name="addr" required />
-        <label for="hours">hours</label>
-        <input type="text" name="hours" required />
-        <label for="open">open</label>
-        <input type="text" name="open" required />
-        <label for="theme">theme</label>
-        <input type="text" name="theme" value="default" disabled />
-        <label for="color">color</label>
-        <input type="text" name="color" value="default" disabled />
+        <script>
+          const form = document.querySelector("form");
+
+          const inputsArray = [
+            {
+              name: "logo",
+              type: "file",
+              status: "required",
+              parent: form,
+            },
+
+            {
+              name: "username",
+              type: "text",
+              status: "required",
+              parent: form,
+            },
+            {
+              name: "password",
+              type: "password",
+              status: "required",
+              parent: form,
+            },
+            {
+              name: "name_restaurant",
+              type: "text",
+              status: "required",
+              parent: form,
+            },
+            {
+              name: "email",
+              type: "email",
+              status: "required",
+              parent: form,
+            },
+            {
+              name: "tel",
+              type: "text",
+              status: "required",
+              parent: form,
+            },
+            {
+              name: "addr",
+              type: "text",
+              status: "required",
+              parent: form,
+            },
+            {
+              name: "hours",
+              type: "text",
+              status: "required",
+              parent: form,
+            },
+            {
+              name: "open",
+              type: "text",
+              status: "required",
+              parent: form,
+            },
+            {
+              name: "theme",
+              type: "text",
+              status: "required",
+              parent: form,
+              value: "default",
+              disabled: true
+
+            },
+            {
+              name: "color",
+              type: "text",
+              status: "required",
+              parent: form,
+              value: "default",
+              disabled: true
+            },
+          ];
+
+          inputsArray.forEach((el) => {
+            createInput(el);
+          });
+        </script>
         <label for="phrase">phrase</label>
         <textarea name="phrase" rows="5" cols="50"></textarea>
+
         <button type="submit">OK</button>
       </form>
     </div>

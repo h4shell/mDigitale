@@ -63,8 +63,16 @@ router.post('/', upload.single('logo'), (req, res) => {
     data.phrase = phrase
     data.logo = req.file.filename
 
-    insertUser(username, password, data).then(
-        res.status(200).redirect('/login'))
+    insertUser(username, password, data).then((el) => {
+      console.log(el)
+      if(el==false){
+        res.status(500).json({err: 'Username already taken'})
+      } else {
+        res.status(200).redirect('/login')
+      }
+      
+    }
+        )
 })
 
 module.exports = router

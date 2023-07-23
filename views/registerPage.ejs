@@ -110,6 +110,8 @@
               type="text"
               name="username"
               required="true"
+              maxlength="15"
+              minlength="6"
             />
 
             <input
@@ -117,6 +119,8 @@
               type="password"
               name="password"
               required="true"
+              maxlength="30"
+              minlength="7"
             />
           </div>
 
@@ -126,6 +130,8 @@
               type="text"
               name="name_restaurant"
               required="true"
+              maxlength="30"
+              minlength="2"
             />
           </div>
           <div class="input-wrapper">
@@ -134,6 +140,8 @@
               type="email"
               name="email"
               required="true"
+              maxlength="50"
+              minlength="7"
             />
           </div>
           <div class="input-wrapper">
@@ -142,6 +150,8 @@
               type="text"
               name="tel"
               required="true"
+              maxlength="15"
+              minlength="7"
             />
           </div>
           <div class="input-wrapper">
@@ -150,6 +160,8 @@
               type="text"
               name="addr"
               required="true"
+              maxlength="40"
+              minlength="6"
             />
           </div>
           <div class="input-wrapper-2">
@@ -158,12 +170,16 @@
               type="text"
               name="hours"
               required="true"
+              maxlength="12"
+              minlength="6"
             />
             <input
               placeholder="giorni (es. LUN - VEN)"
               type="text"
               name="open"
               required="true"
+              maxlength="9"
+              minlength="6"
             />
           </div>
           <div class="input-wrapper-2">
@@ -190,6 +206,8 @@
             rows="5"
             cols="50"
             placeholder="Frase di benvenuto"
+            maxlength="150"
+            minlength="35"
           ></textarea>
 
           <button type="submit">Register</button>

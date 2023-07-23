@@ -160,6 +160,7 @@ async function insertUser(username, password, data) {
     return results;
   } catch (error) {
     console.error(error);
+    return false
   } finally {
     console.log('insertUser - Done..');
   }

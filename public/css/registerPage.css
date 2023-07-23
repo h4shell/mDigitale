@@ -16,7 +16,7 @@
 }
 
 body{
-    
+    margin-bottom: 30px;
     background: var(--bg);
 }
 
@@ -107,5 +107,9 @@ input[disabled=true]{
         grid-template-columns: 1fr;
         grid-gap: 18px;
     
+    }
+
+    body{
+        margin-bottom: 60px;
     }
 }

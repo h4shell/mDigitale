@@ -3,6 +3,7 @@ const router = express.Router()
 const { insertUser } = require('../mymodule/sql')
 const { hashGen } = require('../mymodule/hash');
 const auth = require('../middleware/auth')
+const path = require('path');
 
 
 const multer = require('multer');
@@ -12,7 +13,12 @@ const storage = multer.diskStorage({
     cb(null, 'uploads/');
   },
   filename: function(req, file, cb) {
-    cb(null, file.originalname);
+
+
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9); // Genera un identificatore univoco
+    const extname = path.extname(file.originalname); // Ottiene l'estensione del file originale
+
+    cb(null, file.fieldname + '-' + uniqueSuffix + extname); // Crea un nuovo nome del file
   },
 });
 

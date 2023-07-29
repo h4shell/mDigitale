@@ -54,27 +54,23 @@ JSON.parse(srvData.user.data)%>
         <div class="detail-box">
           <div class="container-select">
             <select id="select" name="type">
-              <option value="antipasti">Antipasti</option>
-              <option value="primi">Primi</option>
-              <option value="secondi">Secondi</option>
-              <option value="dolci">Dolci</option>
-              <option value="vini">Vini</option>
-              <option value="bevande">Bevande</option>
-              <option value="caffetteria">Caffetteria</option>
-              <option value="">Altro</option>
+              <% srvData.menus.map((el) => { console.log("---->", el.type) %>
+              <option value="<%= el.type %>"><%= el.type %></option>
+              <% }) %>
+              <option value="">Other</option>
             </select>
           </div>
           <input
             type="text"
             id="other"
             name="other"
-            placeholder="Inserisci una nuova categoria"
+            placeholder="Category (Es. Panini)"
             style="display: none"
           />
           <input
             type="text"
             name="title"
-            placeholder="Es. Hamburger"
+            placeholder="Piatto (Es. Hamburger)"
             required
           />
 
@@ -82,7 +78,7 @@ JSON.parse(srvData.user.data)%>
             <input
               type="text"
               name="ingredients"
-              placeholder="Es. bacon, eggs, chips"
+              placeholder="Ingredients (Es. bacon, eggs, chips)"
               required
             />
           </p>
@@ -92,7 +88,7 @@ JSON.parse(srvData.user.data)%>
                 type="number"
                 step="0.01"
                 name="price"
-                placeholder="Es. 20.50"
+                placeholder="Price (Es. 20.50)"
                 required
               />
             </h6>
@@ -103,11 +99,16 @@ JSON.parse(srvData.user.data)%>
 
       <!-- ----------------------------------------------------- -->
     </form>
-    <% console.log(srvData) %>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         var select = document.getElementById("select");
         var inputAltro = document.getElementById("other");
+        if (select.value === "") {
+          inputAltro.style.display = "inline-block";
+        } else {
+          inputAltro.style.display = "none";
+        }
+
         select.addEventListener("change", function () {
           if (select.value === "") {
             inputAltro.style.display = "inline-block";

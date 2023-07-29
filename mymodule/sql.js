@@ -101,9 +101,18 @@ async function checkUserPass(username, password){
 }
 
 async function insertItem(username, data) {
+
+  
   try {
+
+    
+
+    
     data = JSON.stringify(data);
     console.log(data);
+
+    
+    
 
     const results = await db.query(
         `INSERT INTO menu (username, data) VALUES ('${username}', '${data}')`,

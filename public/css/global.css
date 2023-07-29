@@ -1,0 +1,6 @@
+:root {
+    --theme-color-primary: #222831;
+    --theme-color-secondary: hsl(0 0% 70%);
+
+    --theme-border-radius: 5px;
+}

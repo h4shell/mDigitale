@@ -79,8 +79,8 @@ form button{
     width: min-content;
     border-radius: 25px;
     border: none;
-    padding: 0.6rem 1.8rem;
-    background: var(--primary-color);
+    padding: 0.6rem .8rem;
+    background: var(--theme-color-primary);
     color: var(--text);
     font-size: 1.1rem;
     margin: 0 auto;

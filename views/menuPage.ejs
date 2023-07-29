@@ -1,7 +1,11 @@
 <!-- srvData = Object -->
 <% const srvData = JSON.parse(atob(encData)) %> <% srvData.user.data =
-JSON.parse(srvData.user.data) %> <%= console.log(srvData) %> <%
-console.log(srvData) %>
+JSON.parse(srvData.user.data) %> <% console.log(srvData) %> <%
+console.log(status)%>
+
+<script>
+  let clientStatus = "<%= status %>";
+</script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,11 +58,28 @@ console.log(srvData) %>
       content="http://<%= hostname %>/<%= srvData.user.data.logo %>"
     />
     <!-- METADATI-->
-
+    <style>
+      .id-item {
+        display: none;
+      }
+    </style>
+    <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/menuPage.css" />
     <title>Menu - <%= srvData.user.data.name_restaurant %></title>
   </head>
   <body>
+    <% if(status) {%>
+    <nav>
+      <button class="goto">
+        <img src="/images/add.svg" alt="" />
+      </button>
+      <form action="/logout" method="post" id="logout">
+        <button type="submit" class="logout">
+          <img src="/images/logout.svg" alt="" />
+        </button>
+      </form>
+    </nav>
+    <% } %>
     <div class="app"></div>
 
     <footer>
@@ -76,8 +97,9 @@ console.log(srvData) %>
             >
               <path
                 d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
-              /></svg
-            ><%= srvData.user.data.addr %>
+              />
+            </svg>
+            <%= srvData.user.data.addr %>
           </p>
           <p>
             <svg
@@ -91,8 +113,9 @@ console.log(srvData) %>
               <path
                 fill-rule="evenodd"
                 d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"
-              /></svg
-            ><%= srvData.user.data.tel %>
+              />
+            </svg>
+            <%= srvData.user.data.tel %>
           </p>
           <p>
             <svg
@@ -130,6 +153,15 @@ console.log(srvData) %>
         >
       </p>
     </div>
+
+    <script>
+      const goto = document.querySelector(".goto");
+
+      goto &&
+        goto.addEventListener("click", () => {
+          window.location.href = "/login";
+        });
+    </script>
     <script>
       const root = document.querySelector(".app");
       const category = [];
@@ -137,7 +169,6 @@ console.log(srvData) %>
       let clientData = "<%= encData %>";
       clientData = JSON.parse(atob(clientData));
       clientData.user.data = JSON.parse(clientData.user.data);
-      console.log(clientData);
 
       clientData.menus.map((menu) => {
         if (!category.includes(menu.type)) {
@@ -166,7 +197,6 @@ console.log(srvData) %>
       h2.innerText = "Our Menu";
       const filterMenu = createDiv(container, "filter-menu", "ul");
 
-      console.log(category);
       createDiv(filterMenu, "active", "li").innerText = "All";
 
       category.map((el) => {
@@ -177,20 +207,39 @@ console.log(srvData) %>
       const filterContent = createDiv(container, "filter-content");
 
       clientData.menus.map((menu) => {
-        const card = createDiv(filterContent, ["card", menu.type]);
-        card.item = menu.id;
+        const { id, image, allergenes, ingredients, title, price, type } = menu;
+
+        const card = createDiv(filterContent, ["card", type]);
+        card.item = id;
 
         const imgBox = createDiv(card, "img-box");
         const img = createDiv(imgBox, null, "img");
-        img.src = `/${menu.image}`;
+        img.src = `/${image}`;
         const detailBox = createDiv(card, "detail-box");
         const h5 = createDiv(detailBox, null, "h5");
-        h5.innerText = menu.title;
+        h5.innerText = title;
         const p = createDiv(detailBox, null, "p");
-        p.innerText = menu.ingredients;
+        p.innerText = ingredients;
         const options = createDiv(detailBox, "options");
         const h6 = createDiv(options, null, "h6");
-        h6.innerText = parseFloat(menu.price).toFixed(2);
+        h6.innerText = parseFloat(price).toFixed(2);
+        const wrapperAllergenes = createDiv(detailBox, "allergenes-wrapper");
+
+        allergenes.split(",").forEach((allergene) => {
+          const spanAllergenes = createDiv(
+            wrapperAllergenes,
+            "icon-allergenes",
+            "span"
+          );
+          spanAllergenes.setAttribute("data-tooltip", allergene);
+          spanAllergenes.id = allergene;
+          const imgAllergene = createDiv(
+            spanAllergenes,
+            "img-allergene",
+            "img"
+          );
+          imgAllergene.src = `/images/allergenes-icons/${allergene}.svg`;
+        });
       });
     </script>
     <script>
@@ -204,25 +253,48 @@ console.log(srvData) %>
           const li = e.target;
           li.classList.add("active");
           const cards = document.querySelectorAll(".card");
-          if (li.innerText == "All") {
+          if (li.textContent == "All") {
             cards.forEach((el) => {
               el.classList.remove("hidden");
             });
-
-            //console.log("ALL");
           } else {
             cards.forEach((el) => {
               el.classList.remove("hidden");
             });
             cards.forEach((el) => {
-              if (!el.classList.contains(li.innerText)) {
+              if (!el.classList.contains(li.textContent)) {
                 el.classList.add("hidden");
               }
             });
-
-            //console.log(li.innerText);
           }
         });
+      });
+    </script>
+
+    <script>
+      const cards = document.querySelectorAll(".card");
+
+      cards.forEach((card) => {
+        const formRem = document.createElement("form");
+        formRem.method = "POST";
+        formRem.action = "/remove/" + clientData.user.username;
+        let formInput = document.createElement("input");
+        formInput.type = "text";
+        formInput.defaultValue = card.item;
+        formRem.appendChild(formInput);
+        formInput.name = "rem";
+        formInput.classList.add("id-item");
+
+        if (clientStatus === "logged") {
+          const btnRem = document.createElement("button");
+          btnRem.type = "Submit";
+          btnRem.classList.add("remove-card");
+          const imgBtn = document.createElement("img");
+          imgBtn.src = "/images/x-square-fill.svg";
+          card.appendChild(formRem);
+          formRem.appendChild(btnRem);
+          btnRem.appendChild(imgBtn);
+        }
       });
     </script>
   </body>

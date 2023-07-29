@@ -2,8 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Freehand&display=swap");
 
 :root {
-  --bg: #222831;
-  --primary-color: black;
   --text: white;
 }
 
@@ -14,14 +12,12 @@
 }
 
 body {
-  width: min(100% - 1rem, 33pc);
   display: flex;
   justify-content: center;
   height: 100vh;
-  height: 100svh;
   align-items: center;
   margin: 0 auto;
-  background: var(--bg);
+  background: var(--theme-color-primary);
   font-family: "Inter", sans-serif;
 }
 
@@ -40,7 +36,7 @@ form button {
   border-radius: 25px;
   border: none;
   padding: 0.6rem 1.8rem;
-  background: var(--primary-color);
+  background: var(--theme-color-primary);
   color: var(--text);
   font-size: 1.1rem;
 }
@@ -111,3 +107,5 @@ h1{
   margin-bottom: 30px;
   color: white;
 }
+
+

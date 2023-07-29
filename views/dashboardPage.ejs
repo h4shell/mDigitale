@@ -15,6 +15,7 @@ JSON.parse(srvData.user.data)%>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashbord</title>
     <link rel="stylesheet" href="/css/dashboardPage.css" />
+    <link rel="stylesheet" href="/css/global.css" />
     <script src="/js/dashboardPage/inputFile.js" defer></script>
     <script src="/js/dashboardPage/showqr.js" defer></script>
   </head>
@@ -47,51 +48,183 @@ JSON.parse(srvData.user.data)%>
       <!-- ------------------------------------------------------ -->
 
       <div class="card-new">
-        <div class="img-box">
-          <input type="file" name="image" required accept="image/*" />
-          <img src="" id="preview" alt="" class="dnone" />
+        <div class="card-title">
+          <h2 class="card-title">Add new product</h2>
         </div>
         <div class="detail-box">
           <div class="container-select">
-            <select id="select" name="type">
-              <% srvData.menus.map((el) => { console.log("---->", el.type) %>
-              <option value="<%= el.type %>"><%= el.type %></option>
-              <% }) %>
-              <option value="">Other</option>
-            </select>
-          </div>
-          <input
-            type="text"
-            id="other"
-            name="other"
-            placeholder="Category (Es. Panini)"
-            style="display: none"
-          />
-          <input
-            type="text"
-            name="title"
-            placeholder="Piatto (Es. Hamburger)"
-            required
-          />
+            <div class="input-wrapper">
+              <label for="type">Category</label>
+              <input
+                type="text"
+                name="type"
+                id="category-input"
+                placeholder="Ex. Main dishes"
+                required
+              />
+            </div>
+            <div class="categories-list">
+              <% const arrayType = [] %> <%srvData.menus.forEach((el) => { %> <%
+              if(!arrayType.includes(el.type)){ %> <% arrayType.push(el.type) }
+              }) %> <%arrayType.forEach((cat) => {%>
+              <div class="category" value="<%= cat %>"><%= cat %></div>
+              <%})%>
+            </div>
 
-          <p>
+            <script>
+              const categoryInput = document.querySelector("#category-input");
+              const categoriesList = document.querySelector(".categories-list");
+              const categories = document.querySelectorAll(".category");
+
+              document.addEventListener("click", hideCategoriesList);
+
+              categoryInput.addEventListener("input", toggleShowCategoriesList);
+              categories.forEach((category) =>
+                category.addEventListener("click", setCategoryInput)
+              );
+
+              function hideCategoriesList() {
+                categoriesList.style.display = "none";
+              }
+
+              function toggleShowCategoriesList(e) {
+                const filteredCategories = [...categories].filter((category) =>
+                  category.innerText
+                    .toLowerCase()
+                    .includes(e.target.value.toLowerCase())
+                );
+                categoriesList.style.display =
+                  e.target.value && filteredCategories.length
+                    ? "block"
+                    : "none";
+                categories.forEach((category) => {
+                  category.style.display = category.innerText
+                    .toLowerCase()
+                    .includes(e.target.value.toLowerCase())
+                    ? "block"
+                    : "none";
+                });
+              }
+
+              function setCategoryInput(e) {
+                if (e.currentTarget.classList.contains("category")) {
+                  categoryInput.value = this.innerText;
+                }
+                hideCategoriesList();
+              }
+            </script>
+          </div>
+          <div class="input-wrapper">
+            <label for="category">Title</label>
+            <input
+              type="text"
+              name="title"
+              placeholder="Ex. Hamburger"
+              required
+            />
+          </div>
+
+          <div class="input-wrapper">
+            <label for="category">Ingredients</label>
             <input
               type="text"
               name="ingredients"
-              placeholder="Ingredients (Es. bacon, eggs, chips)"
+              placeholder="Ex. bacon, eggs, chips"
               required
             />
-          </p>
-          <div class="options">
-            <h6>
-              <input
-                type="number"
-                step="0.01"
-                name="price"
-                placeholder="Price (Es. 20.50)"
-                required
-              />
-            </h6>
+          </div>
+          <input type="text" name="allergenes" required />
+
+          <div class="input-wrapper">
+            <label for="category">Price</label>
+            <input
+              type="number"
+              step="0.01"
+              name="price"
+              placeholder="Ex. 20.50"
+              required
+            />
+          </div>
+          <div class="input-wrapper img-upload">
+            <label for="image">Image</label>
+            <input type="file" name="image" required accept="image/*" />
+            <img src="" id="preview" alt="" class="dnone" />
+          </div>
+          <div class="allergenes-container">
+            <p class="allergenes-title">Allergenes</p>
+            <div class="allergenes-list">
+              <script>
+                const allergenesWrapper =
+                  document.querySelector(".allergenes-list");
+                const arrayAllergenes = [
+                  "abalone",
+                  "apple",
+                  "banana",
+                  "beef",
+                  "cashew",
+                  "celery",
+                  "chicken",
+                  "crab",
+                  "eggs",
+                  "fish",
+                  "gelatin",
+                  "gluten",
+                  "kiwi",
+                  "lupine",
+                  "matsuke",
+                  "milk",
+                  "mushroom",
+                  "nuts",
+                  "orange",
+                  "peach",
+                  "pork",
+                  "potato",
+                  "sesame",
+                  "shrimp",
+                  "soya",
+                  "soybean",
+                  "squid",
+                  "sulfur",
+                  "walnut",
+                  "wheat",
+                ];
+                arrayAllergenes.forEach((allergene) => {
+                  const btn = document.createElement("button");
+                  btn.classList.add("btn-allergenes");
+                  btn.id = allergene;
+                  btn.innerText = allergene;
+                  allergenesWrapper.appendChild(btn);
+                });
+              </script>
+            </div>
+
+            <script>
+              const inputAllergenes = document.querySelector(
+                'input[name="allergenes"]'
+              );
+
+              const allergenesList = [];
+              function toggleIngredient(e) {
+                e.preventDefault();
+                if (allergenesList.includes(e.currentTarget.id)) {
+                  allergenesList.splice(
+                    allergenesList.indexOf(e.currentTarget.id),
+                    1
+                  );
+                } else {
+                  allergenesList.push(e.currentTarget.id);
+                }
+                e.currentTarget.classList.toggle("active");
+                inputAllergenes.value = allergenesList;
+              }
+
+              const btnsAllergenes =
+                document.querySelectorAll(".btn-allergenes");
+
+              btnsAllergenes.forEach((btn) => {
+                btn.addEventListener("click", toggleIngredient);
+              });
+            </script>
           </div>
           <button type="submit"><img src="/images/send.svg" alt="" /></button>
         </div>
@@ -101,22 +234,6 @@ JSON.parse(srvData.user.data)%>
     </form>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        var select = document.getElementById("select");
-        var inputAltro = document.getElementById("other");
-        if (select.value === "") {
-          inputAltro.style.display = "inline-block";
-        } else {
-          inputAltro.style.display = "none";
-        }
-
-        select.addEventListener("change", function () {
-          if (select.value === "") {
-            inputAltro.style.display = "inline-block";
-          } else {
-            inputAltro.style.display = "none";
-          }
-        });
-
         const goto = document.querySelector(".goto");
 
         goto.addEventListener("click", () => {
